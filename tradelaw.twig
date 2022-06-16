@@ -15,13 +15,15 @@
                         <dt>
                             <label class="ec-label">販売業者</label>
                         </dt>
-                        <dd></dd>
+                        <dd>{% if BaseInfo.company_name|default is not empty %}{{ BaseInfo.company_name }}{% endif %}</dd>
                     </dl>
                     <dl>
                         <dt>
                             <label class="ec-label">代表責任者</label>
                         </dt>
                         <dd>
+                            ここに代表責任者を入力してください<br>
+                            例：店舗責任者 〇〇 〇〇
                         </dd>
                     </dl>
                     <dl>
@@ -29,7 +31,10 @@
                             <label class="ec-label">所在地</label>
                         </dt>
                         <dd>
-
+                            {% if BaseInfo.postal_code|default is not empty %}
+                                {{ '〒'|trans }}{{ BaseInfo.postal_code }}<br />
+                                {{ BaseInfo.pref }}{{ BaseInfo.addr01 }}{{ BaseInfo.addr02 }}
+                            {% endif %}
                         </dd>
                     </dl>
 
@@ -37,49 +42,107 @@
                         <dt>
                             <label class="ec-label">電話番号</label>
                         </dt>
-                        <dd></dd>
+                        <dd>{% if BaseInfo.phone_number|default is not empty %}{{ BaseInfo.phone_number }}{% endif %}</dd>
                     </dl>
 
                     <dl>
                         <dt>
-                            <label class="ec-label">メールアドレス</label>
+                            <label class="ec-label">問い合わせ先</label>
                         </dt>
-                        <dd><a href="mailto:"></a></dd>
+                        <dd>
+                            当サイト内の「<a href="{{ url('contact') }}">問い合わせ</a>」よりご連絡ください。
+                        </dd>
                     </dl>
 
                     <dl>
                         <dt>
                             <label class="ec-label">URL</label>
                         </dt>
-                        <dd><a href=""></a></dd>
+                        <dd><a href="{{ url('homepage') }}">{{ url('homepage') }}</a></dd>
+                    </dl>
+
+                    <dl>
+                        <dt>
+                            <label class="ec-label">商品の料金</label>
+                        </dt>
+                        <dd>
+                            商品毎の詳細ページに記載
+                        </dd>
                     </dl>
 
                     <dl>
                         <dt>
                             <label class="ec-label">商品代金以外の必要料金</label>
                         </dt>
-                        <dd></dd>
+                        <dd>
+                            <dl>
+                                <dt>送料</dt>
+                                <dd>全国一律 〇〇円</dd>
+                            </dl>
+                            <dl>
+                                <dt>支払い手数料</dt>
+                                <dd>
+                                    クレジットカード：〇〇円<br>
+                                    コンビニ後払い：〇〇円<br>
+                                    代金引換：〇〇円
+                                </dd>
+                            </dl>
+                        </dd>
                     </dl>
 
                     <dl>
                         <dt>
                             <label class="ec-label">引き渡し時期</label>
                         </dt>
-                        <dd></dd>
+                        <dd>
+                            原則として、注文または入金確認から〇営業日以内に発送を行います。<br>
+                            発送完了から配送業者の保管期間となる〇日間が商品引き渡し時期となります。<br>
+                            ※予約販売の場合は入荷後の発送となりますので、発送日の目安は商品ページをご確認ください。
+                        </dd>
                     </dl>
 
                     <dl>
                         <dt>
-                            <label class="ec-label">お支払方法</label>
+                            <label class="ec-label">お支払方法・期限</label>
                         </dt>
-                        <dd></dd>
+                        <dd>
+                            <dl>
+                                <dt>クレジットカード（〇〇,〇〇,〇〇）</dt>
+                                <dd>ご注文時にお支払いが確定します</dd>
+                            </dl>
+                            <dl>
+                                <dt>コンビニ後払い（〇〇,〇〇,〇〇）</dt>
+                                <dd>ご注文から〇日以内にお近くのコンビニよりお支払いください</dd>
+                            </dl>
+                            <dl>
+                                <dt>代金引換</dt>
+                                <dd>商品お届け時に、配達員の方にお支払いください。</dd>
+                            </dl>
+
+                        </dd>
                     </dl>
 
                     <dl>
                         <dt>
                             <label class="ec-label">返品・交換について</label>
                         </dt>
-                        <dd></dd>
+                        <dd>
+                            <dl>
+                                <dt>商品不良による返品・交換</dt>
+                                <dd>
+                                    不良、もしくは輸送中の事故による破損が見つかった場合、商品到着後〇日以内にご連絡の上、
+                                    商品を送料当方負担（着払い）でご返送ください。当店の送料負担にて新品との交換、または返金にて対応をさせて頂きます。
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>お客様のご都合での返品・交換</dt>
+                                <dd>商品到着後〇日以内にご連絡の上、商品を送料お客様負担（元払い）でご返送ください。
+                                    別商品との交換、または返金にて対応をさせて頂きます。
+                                    ※送料はお客様のご負担となります。
+                                    ※差額のある商品との交換はお受け出来かねる場合がございます。
+                                </dd>
+                            </dl>
+                        </dd>
                     </dl>
                 </div>
             </div>
